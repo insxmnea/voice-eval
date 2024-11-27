@@ -1,0 +1,79 @@
+:root {
+  --color-white: #ffffff99;
+
+  --color-black: #1a1a1a;
+
+  --color-gray-1: #424549;
+  --color-gray-2: #292c31;
+  --color-gray-3: #1e2125;
+
+  --color-purple: #9575cd;
+
+  --border: 1px solid var(--color-white);
+  --border-purple: 1px solid var(--color-purple);
+
+  --box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: var(--color-gray-1);
+  color: var(--color-white);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: var(--color-gray-2);
+  color: var(--color-white);
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 500;
+
+  box-shadow: var(--box-shadow);
+
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+  background-color: var(--color-gray-3);
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.button-with-icon {
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 20px;
+  border-radius: 50%;
+}
+
+.recording {
+  background-image: url('../assets/icons/stop.svg');
+  background-size: 40%;
+}
+
+.not-recording {
+  background-image: url('../assets/icons/microphone.svg');
+}
