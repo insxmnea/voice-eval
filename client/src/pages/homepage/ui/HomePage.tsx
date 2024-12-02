@@ -1,29 +1,61 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useRef } from "react";
 import styles from "./HomePage.module.scss";
-import { ToggleButton } from "@/widgets/toggle-button";
 import classNames from "classnames";
+import SpeechRecognition, {
+  useSpeechRecognition,
+} from "react-speech-recognition";
 
 export const HomePage: FC = () => {
-  const [isRecording, setIsRecording] = useState(false);
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition,
+  } = useSpeechRecognition();
+
+  const outputEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [transcript]);
+
+  if (!browserSupportsSpeechRecognition) {
+    return <span>Browser doesn't support speech recognition.</span>;
+  }
+
+  const scrollToBottom = () => {
+    outputEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const toggleListening = () => {
+    if (listening) {
+      SpeechRecognition.stopListening();
+    } else {
+      SpeechRecognition.startListening({
+        continuous: true,
+        language: "ru-RU",
+      });
+    }
+  };
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.speech}>Output</div>
+      <div className={styles.speech}>
+        {transcript || "Output"}
+        <div ref={outputEndRef}></div>
+      </div>
       <div className={styles.controls}>
-        <input type="file" id="audioUpload" multiple accept="audio/*" />
-        <button id="processAudio">Process</button>
-        <div id="results"></div>
-
+        <input type="file" multiple accept="audio/*" />
         <button
           className={classNames(styles.buttonWithIcon, {
-            [styles.recording]: isRecording,
+            [styles.recording]: listening,
           })}
+          onClick={() => {
+            toggleListening();
+          }}
         ></button>
 
-        <div className={styles.settings}>
-          <ToggleButton text="Real time transcription" />
-          <ToggleButton text="Wait for user input" />
-        </div>
+        <button onClick={resetTranscript}>Reset</button>
       </div>
     </div>
   );
