@@ -38,7 +38,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 body {
@@ -64,64 +64,4 @@ button {
 
 button:hover {
   background-color: var(--color-gray-3);
-}
-
-.wrapper {
-  display: flex;;
-  justify-content: space-around;
-  align-items: center;
-  height: 100vh;
-  width: 100vw;
-}
-
-.button-with-icon {
-  background-size: 60%;
-  background-repeat: no-repeat;
-  background-position: center;
-  padding: 100px;
-  border-radius: 50%;
-}
-
-.recording {
-  background-image: url('../assets/icons/stop.svg');
-  background-size: 40%;
-}
-
-.not-recording {
-  background-image: url('../assets/icons/microphone.svg');
-}
-
-.speech {
-  background-color: var(--color-gray-2);
-  font-size: 46px;
-  width: 40vw;
-  height: 70vh;
-  overflow-y: auto;
-  padding: 20px;
-  border-radius: 10px;
-
-  box-shadow: var(--box-shadow);
-}
-
-.column {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-
-.settings {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
-}
-
-.controls {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
 }
