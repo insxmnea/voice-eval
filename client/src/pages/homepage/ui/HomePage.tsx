@@ -41,21 +41,23 @@ export const HomePage: FC = () => {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.speech}>
-        {transcript || "Output"}
-        <div ref={outputEndRef}></div>
-      </div>
-      <div className={styles.controls}>
-        <button
-          className={classNames(styles.buttonWithIcon, {
-            [styles.recording]: listening,
-          })}
-          onClick={() => {
-            toggleListening();
-          }}
-        ></button>
+      <div className={styles.speechWrapper}>
+        <div className={styles.speech}>
+          {transcript || "Output"}
+          <div ref={outputEndRef}></div>
+        </div>
+        <div className={styles.controls}>
+          <button
+            className={classNames(styles.buttonWithIcon, {
+              [styles.recording]: listening,
+            })}
+            onClick={() => {
+              toggleListening();
+            }}
+          ></button>
 
-        <button onClick={resetTranscript}>Reset</button>
+          <button onClick={resetTranscript}>Reset</button>
+        </div>
       </div>
 
       <AudioUploader />

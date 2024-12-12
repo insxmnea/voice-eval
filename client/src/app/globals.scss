@@ -65,3 +65,53 @@ button {
 button:hover {
   background-color: var(--color-gray-3);
 }
+
+input {
+  background-color: var(--color-gray-2);
+  color: var(--color-white);
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  outline: none;
+
+  box-shadow: var(--box-shadow);
+
+  transition: all 0.2s ease-in-out;
+
+  &::placeholder {
+    color: var(--color-white);
+    opacity: 0.7;
+  }
+
+  &:focus {
+    background-color: var(--color-gray-3);
+  }
+}
+
+textarea {
+  background-color: var(--color-gray-2);
+  color: var(--color-white);
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  outline: none;
+
+  box-shadow: var(--box-shadow);
+
+  transition: all 0.2s ease-in-out;
+
+  &::placeholder {
+    color: var(--color-white);
+    opacity: 0.7;
+  }
+
+  &:focus {
+    background-color: var(--color-gray-3);
+  }
+
+  resize: none;
+}

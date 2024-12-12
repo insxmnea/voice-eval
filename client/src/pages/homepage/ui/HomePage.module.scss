@@ -1,9 +1,14 @@
 .wrapper {
   display: flex;
+  flex-direction: column;
+  padding: 60px;
+}
+
+.speechWrapper {
+  display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 100vh;
-  width: 100vw;
+  margin-top: 60px;
 }
 
 .buttonWithIcon {
