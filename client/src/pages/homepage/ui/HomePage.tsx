@@ -4,6 +4,7 @@ import classNames from "classnames";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
+import { AudioUploader } from "@/widgets/audio-uploader";
 
 export const HomePage: FC = () => {
   const {
@@ -45,7 +46,6 @@ export const HomePage: FC = () => {
         <div ref={outputEndRef}></div>
       </div>
       <div className={styles.controls}>
-        <input type="file" multiple accept="audio/*" />
         <button
           className={classNames(styles.buttonWithIcon, {
             [styles.recording]: listening,
@@ -57,6 +57,8 @@ export const HomePage: FC = () => {
 
         <button onClick={resetTranscript}>Reset</button>
       </div>
+
+      <AudioUploader />
     </div>
   );
 };
