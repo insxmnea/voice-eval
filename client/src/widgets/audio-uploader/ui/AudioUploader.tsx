@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FC, useState } from "react";
+import { FC, useRef, useState } from "react";
 import styles from "./AudioUploader.module.scss";
 import { calculateBLEU, calculateWER } from "@/shared/lib/utils";
 
@@ -11,11 +11,16 @@ export const AudioUploader: FC = () => {
   const [showEvaluation, setShowEvaluation] = useState(false);
   const [wer, setWER] = useState("");
   const [bleu, setBLEU] = useState("");
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   const handleFileChange = (event: any) => {
     setShowEvaluation(false);
 
     setFile(event.target.files[0]);
+
+    const urlObj = URL.createObjectURL(event.target.files[0]);
+
+    if (audioRef.current) audioRef.current.src = urlObj;
   };
 
   const handleUpload = async () => {
@@ -57,26 +62,30 @@ export const AudioUploader: FC = () => {
 
   return (
     <div className={styles.wrapper}>
-      <span>Audio Transcription</span>
-      <div>
+      <span className={styles.title}>Audio Transcription</span>
+      <div className={styles.uploader}>
         <input
           className={styles.input}
           type="file"
           accept=".mp3"
           onChange={handleFileChange}
         />
+        <audio ref={audioRef} controls></audio>
         <button onClick={handleUpload}>Transcribe</button>
-        {processing && <p>Processing...</p>}
+      </div>
+
+      <div>
+        {processing && <p className={styles.processing}>Processing...</p>}
 
         {transcription && (
-          <div>
+          <div className={styles.transcriptionWrapper}>
             <span>Transcription:</span>
-            <p>{transcription}</p>
+            <p className={styles.transcription}>{transcription}</p>
           </div>
         )}
       </div>
 
-      <div className={styles.wrapper}>
+      <div className={styles.evaluationWrapper}>
         <textarea
           className={styles.input}
           cols={60}
@@ -87,11 +96,14 @@ export const AudioUploader: FC = () => {
         <button onClick={onEvaluate}>Evaluate</button>
 
         {showEvaluation && (
-          <div>
-            <span>BLEU:</span>
-            <p>{bleu}</p>
-            <span>WER:</span>
-            <p>{wer}</p>
+          <div className={styles.evaluation}>
+            <span>
+              BLEU (Bilingual Evaluation Understudy) – оценка качества перевода
+              по сравнению с ожидаемым текстом: {bleu}
+            </span>
+            <span>
+              WER (Word Error Rate) – частота ошибок на уровне слов: {wer}
+            </span>
           </div>
         )}
       </div>

@@ -25,7 +25,7 @@ export const HomePage: FC = () => {
   }
 
   const scrollToBottom = () => {
-    outputEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    // outputEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   const toggleListening = () => {
